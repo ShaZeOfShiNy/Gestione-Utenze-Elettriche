@@ -1,0 +1,6 @@
+23
+Aspirapolvere 4 9999
+Lavatrice 8 999
+Televisione 6 99
+Telefono 6 1
+Phon 4 9
