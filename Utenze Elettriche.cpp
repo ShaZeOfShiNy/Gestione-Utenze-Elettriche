@@ -1,4 +1,20 @@
-/*
+/*	
+	Copyright [2020] [Matteo Galletta]
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	
+	-------------------------------------
+	
 	Programma eseguito da: Matteo Galletta
 	
 	Data: 09/05/2020
@@ -66,7 +82,7 @@ void windowSize(int arrSize) {
 }
 
 void Gestione(Utenza* arr, int arrSize, float &arrUsed, float arrMAX, int fixed) {
-	// l'elemento 'fixed' non puÚ essere disattivato, in quanto Ë stato appena inserito.
+	// l'elemento 'fixed' non pu√≤ essere disattivato, in quanto √® stato appena inserito.
 	
 	bool isIdle[MAX];
 	
@@ -167,7 +183,7 @@ void InterfacciaGrafica(Utenza* arr, int arrSize, float arrUsed, float arrMAX){
 	// Stampa l'elenco delle utenze, contenente le seguenti informazioni:
 	//	-Numero Utenza;
 	//	-Potenza Utilizzata Utenza;
-	//	-Priorit‡ Utenza; [implicita, l'ordine ne esprime la priorit‡.]
+	//	-Priorit√† Utenza; [implicita, l'ordine ne esprime la priorit√†.]
 	//	-Stato Attuale (Attivo / Disattivo);
 	//	-Tasto di Attivazione/Disattivazione Utenza.
 	
@@ -187,14 +203,14 @@ void InterfacciaGrafica(Utenza* arr, int arrSize, float arrUsed, float arrMAX){
 		gotoxy(6 + nameSize, i*2 + 4);
 		printf("%3.2f", arr[i].Potenza);
 		
-		// Stampa la priorit‡ dell'utenza.
+		// Stampa la priorit√† dell'utenza.
 //		textcolor(9);
 //		gotoxy(10 + nameSize, i*2 + 5);
 //		printf("%d", arr[i].Priorita);
 		
 		// Stampa lo stato attuale dell'utenza.
-		// Se l'utenza Ë attiva, sar‡ stampato un quadrato verde,
-		// altrimenti sar‡ rosso.
+		// Se l'utenza √® attiva, sar√† stampato un quadrato verde,
+		// altrimenti sar√† rosso.
 		arr[i].isOn ? textcolor(2) : textcolor(12);
 		gotoxy(15 + nameSize, i*2 + 4);
 		printf("%c%c", 219, 219); // Stampa un quadrato.
@@ -206,7 +222,7 @@ bool InsertSort(Utenza* arr, int &arrSize, Utenza temp){
 	int f = arrSize - 1;
 	// "Order by ..., then ..."
 	// Ordinare secondo X, poi secondo Y:
-	// X: Priorit‡ dell'utenza.
+	// X: Priorit√† dell'utenza.
 	// Y: Potenza inferiore.
 	float arrComparison = arr[f].Priorita + 1.0 - arr[f].Potenza / pow(10,6);
 	float tempComparison = temp.Priorita + 1.0 - temp.Potenza / pow(10,6);
@@ -232,21 +248,21 @@ bool LeggiUtenza(Utenza* arr, int &arrSize, float &arrMAX, const char fileName[]
 	Utenza temp;
 	// Potenza massima supportata dall'abitazione.
 	fscanf(File, "%f", &arrMAX);
-	while(!feof(File)) { // FinchË il file non finisce
+	while(!feof(File)) { // Finch√® il file non finisce
 		
 		temp.Nome[0] = NULL;
 		
 		// Esempio formato di input:
-		//    NOME   kW  Priorit‡
+		//    NOME   kW  Priorit√†
 		// Lavatrice 0.4    10
 		fscanf(File, "%s %f %d", &temp.Nome, &temp.Potenza, &temp.Priorita);
 		
 		temp.isOn = false; // Inizialmente, tutte le utenze sono spente.
 		
 		// Inserisce all'interno della struttura dati le varie utenze, man mano che vengono lette
-		if(temp.Nome[0]!=NULL) if(!InsertSort(arr, arrSize, temp)) break; // In questo modo, le utenze saranno ordinate secondo la loro priorit‡.
+		if(temp.Nome[0]!=NULL) if(!InsertSort(arr, arrSize, temp)) break; // In questo modo, le utenze saranno ordinate secondo la loro priorit√†.
 		
-//		arrSize++; // Adesso la struttura dati contiene un'utenza in pi˘. Avviene nella funzione InsertSort
+//		arrSize++; // Adesso la struttura dati contiene un'utenza in pi√π. Avviene nella funzione InsertSort
 	}
 	fclose(File); // Chiusura file di lettura.
 	if(arrSize == 27){
